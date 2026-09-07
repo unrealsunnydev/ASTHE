@@ -30,12 +30,14 @@ public var controls(get, never):Controls;
 
 		super.update(elapsed);
 
+		/*
 		if (FlxG.keys.justPressed.F5) {
 			hotReload();
-		}
+		} */
 
 	}
 
+	/* // Disabled until fix soon
 	public static function hotReload():Void {
 			trace("HOT RELOAD");
 			Paths.clearStoredMemory();
@@ -47,7 +49,7 @@ public var controls(get, never):Controls;
 
 			FlxG.resetState();
 			return;
-	}
+	}*/
 
 	public static function getState():StateManager {
 		return cast (FlxG.state, StateManager);
