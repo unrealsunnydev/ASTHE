@@ -15,7 +15,7 @@ class System extends OptionsSubState {
 		addOption(new BoolOption("discord_rich_presence", "discordRPC"));
 		#end
 		addOption(new BoolOption("haptics", "haptics"));
-		#if (sys && windows)
+		#if sys
 		addOption(new BoolOption("accent_colors", "accentColors"));
 		#end
 		#if shaders_supported

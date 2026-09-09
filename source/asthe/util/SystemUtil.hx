@@ -3,6 +3,11 @@ package asthe.util;
 import openfl.system.Capabilities;
 import lime.system.System as LimeSystem;
 
+import haxe.io.Path;
+#if sys
+import sys.io.Process;
+#end
+
 class SystemUtil {
 	@:isVar
 	public static var ACCENT_COLOR(get, set):FlxColor = 0xFFFFFF;
@@ -31,7 +36,7 @@ class SystemUtil {
 		#if sys
 		if(!absolute) folder =  Sys.getCwd() + folder;
 
-		folder = haxe.io.Path.removeTrailingSlashes(folder.replace(DIRECTORY_SEPARATOR_REPL, DIRECTORY_SEPARATOR));
+		folder = Path.removeTrailingSlashes(folder.replace(DIRECTORY_SEPARATOR_REPL, DIRECTORY_SEPARATOR));
 
 
 		#if (windows || linux || mac)
@@ -65,11 +70,23 @@ class SystemUtil {
 	inline public static function loadAccentColor():Null<Int> {
 		trace("Loading accent colors...".info());
 
-		#if (windows && !winjs)
+		function loadBlankColor():Int {
+			var errorMsg:String = "You're using a environment that doesn't support accent colors!";
+			#if no_traces // Prevent it to call trace() again
+			FlxG.log.error(errorMsg);
+			#else
+			trace(errorMsg.error());
+			#end
+			return 0xFFFFFF;
+		}
 
+		#if sys
+		var p:Process;
+		#end
+
+		#if (windows && sys)
 		// Run a command to get the value
-		var p = new sys.io.Process("reg", ["query", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent", "/v", "AccentColorMenu"]);
-
+		p = new Process("reg", ["query", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent", "/v", "AccentColorMenu"]);
 		var result:String = p.stdout.readAll().toString();
 		p.close();
 
@@ -84,12 +101,46 @@ class SystemUtil {
 
 		trace('Loaded!'#if debug + '\nParsed: . $accent\nOriginal: $r'#end.info());
 		return Std.parseInt(accent);
-		#else // I don't know how accent colors works on other systems...
-		var errorMsg:String = "You're using a platform that doesn't support accent colors!";
+		#elseif linux
+		final HOME:String = Sys.getEnv("HOME");
 
-		trace(errorMsg.error());
-		FlxG.log.error(errorMsg);
-		return 0xFFFFFF;
+		// Gets the current desktop environment you're using: KDE Plasma, GNOME, Cinnamon...
+		function getDesktop():Null<String> {
+			var x = Std.string(Sys.getEnv("XDG_CURRENT_DESKTOP")).toUpperCase();
+			if (x.contains("KDE") || x.contains("PLASMA")) return "KDE";
+			if (x.contains("GNOME")) return "GNOME";
+			if (x.contains("CINNAMON")) return "CINNAMON";
+			if (x.contains("XFCE")) return "XFCE";
+			return null;
+		}
+
+		// TODO: Add support to GNOME, XFCE and more.
+		switch (getDesktop()) {
+			case "KDE":
+				trace("Linux Desktop is KDE Plasma".info());
+
+				// Read "$HOME/.config/kdeglobals" file
+				var cfg = File.getContent(Path.join([HOME, ".config", "kdeglobals"]));
+				var rawAccent = cfg.substr(cfg.indexOf("AccentColor") + 12).split("\n")[0].split(",");
+
+				var accent = "0x" + StringTools.hex(Std.parseInt(rawAccent[0]), 2);
+				accent += StringTools.hex(Std.parseInt(rawAccent[1]), 2);
+				accent += StringTools.hex(Std.parseInt(rawAccent[2]), 2);
+
+				return Std.parseInt(accent);
+			/*
+			case "GNOME":
+				trace("Linux Desktop is GNOME".info());
+			case "CINNAMON":
+				trace("Linux Desktop is Cinnamon".info());
+			case "XFCE":
+					trace("Linux Desktop is XFCE".info());
+			*/
+			default:
+				return loadBlankColor();
+		}
+		#elseif (mac || !sys) // I don't know how accent colors works on other systems...
+		return loadBlankColor();
 		#end
 	}
 

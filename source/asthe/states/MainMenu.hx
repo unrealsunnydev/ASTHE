@@ -47,7 +47,10 @@ class MainMenu extends StateManager {
 		backd.velocity.set(-30, 0);
 		add(backd);
 
-		var backdFill:AstheSprite = new AstheSprite().createGraphic(FlxG.width, Math.floor(backd.y), backd.color);
+		var backdFill:AstheSprite = new AstheSprite().createGraphic(FlxG.width, Math.floor(backd.y), 0xFFFFFFFF);
+		backdFill.color = backd.color;
+		backdFill.alpha = backd.alpha;
+		backdFill.dirty = backd.dirty;
 		add(backdFill);
 
 		var titleTxt:AstheBitmapText = AstheBitmapText.createAngelCode(0, 2, Locale.getString("title", "main_menu"), "HUD");
