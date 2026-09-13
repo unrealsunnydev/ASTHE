@@ -12,6 +12,7 @@ class CharacterEdt extends StateManager {
 	public function new():Void {
 		character = new Character(0, 0, curCharacter);
 		liveIcon = new LifeIcon(curCharacter);
+		super();
 	}
 
 	override public function create():Void {
