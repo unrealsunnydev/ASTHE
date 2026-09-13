@@ -8,7 +8,7 @@ package asthe.options.substates;
 
 class System extends OptionsSubState {
 	public function new() {
-		title = Locale.getString("title_system", "options");
+		title = "System";
 
 		addOption(new BoolOption("cache_on_gpu", "cacheOnGPU"));
 		#if DISCORD_ALLOWED

@@ -8,7 +8,7 @@ package asthe.options.substates;
 
 class Gameplay extends OptionsSubState {
 	public function new() {
-		title = Locale.getString("title_gameplay", "options");
+		title = "Gameplay";
 
 		addOption(new BoolOption("auto_pause", "autoPause"));
 		addOption(new BoolOption("flashing_lights", "flashing"));

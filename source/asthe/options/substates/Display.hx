@@ -8,7 +8,7 @@ package asthe.options.substates;
 
 class Display extends OptionsSubState {
 	public function new() {
-		title = Locale.getString("title_display", "options");
+		title = "Display";
 
 		addOption(new NumberOption("background_layers", "backLayers", 0.0, 0.0, 1.0, 0.1, true));
 

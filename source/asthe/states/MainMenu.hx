@@ -16,6 +16,8 @@ import flixel.input.mouse.FlxMouse;
 
 class MainMenu extends StateManager {
 	public static var curSelected:Int = 0;
+	
+	public static var bg:AstheSprite;
 
 	var group:FlxTypedGroup<AstheBitmapText>;
 	var options:Array<String> = [
@@ -25,14 +27,14 @@ class MainMenu extends StateManager {
 		"Exit"
 	];
 
-	override function create() {
+	override function create():Void {
 		Paths.clearStoredMemory();
 
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence({details: Locale.getString('main_menu', 'discord')});
 		#end
 
-		var bg:flixel.FlxSprite = AstheSprite.createGradient(FlxG.width, FlxG.height, [0xFF793BFF, 0xFF95EDFF], 4, 32, false);
+		bg = AstheSprite.create(0, 0, "menus/main/bg");
 		add(bg);
 
 		var bgLayer:AstheSprite = new AstheSprite().createGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -85,11 +87,6 @@ class MainMenu extends StateManager {
 			menu.ID = num;
 			group.add(menu);
 		}
-
-		// Testing asset with Polymod and FireTongue but seems it doesn't work :P
-		var test:AstheSprite = AstheSprite.create(0, 0, "assetTest");
-		test.screenCenter();
-		add(test);
 
 		super.create();
 		changeItem();

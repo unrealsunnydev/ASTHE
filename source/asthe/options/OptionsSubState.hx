@@ -30,6 +30,8 @@ class OptionsSubState extends SubStateManager {
 	public function new() {
 		super();
 
+		title = !StringUtil.isBlank(title) ? Locale.getString("title_" + title, "options") : Locale.getString("title", "options");
+
 		var bg = new AstheSprite().createGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0.5;
 		add(bg);
@@ -51,7 +53,7 @@ class OptionsSubState extends SubStateManager {
 
 		add(camFollow);
 
-		var title:AstheBitmapText = AstheBitmapText.createAngelCode(0, 8, !StringUtil.isBlank(title) ? Locale.getString("title", "options") : "Options");
+		var title:AstheBitmapText = AstheBitmapText.createAngelCode(0, 8, title);
 		title.screenCenter(X);
 		add(title);
 
