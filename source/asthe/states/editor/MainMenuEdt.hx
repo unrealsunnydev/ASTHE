@@ -6,7 +6,7 @@ package asthe.states.editor;
 class MainMenuEdt extends StateManager {
 	var selected:Int = 0;
 	var group:FlxTypedGroup<AstheText>;
-	var options:Array<String> = [];
+	var options:Array<String> = ["Character Editor"];
 
 	override public function create() {
 		var bg:flixel.FlxSprite = AstheSprite.createGradient(FlxG.width, FlxG.height, [0xFF353535, 0xFF979797], 4, 32, false);
@@ -25,7 +25,7 @@ class MainMenuEdt extends StateManager {
 			}
 		}
 		else {
-			var warn:AstheText = AstheText.create(0, 0, Locale.getString("no_options", "editor_menu"));
+			var warn:AstheText = AstheText.create(0, 0, Locale.getString("no_options", "editor_menu", [asthe.input.InputFormatter.getControlNames(asthe.input.InputList.ACCEPT)]));
 			warn.screenCenter();
 			add(warn);
 		}
@@ -52,7 +52,10 @@ class MainMenuEdt extends StateManager {
 				AstheSound.playSound(ConstantSound.MENU_ACCEPT);
 				selectedSomethin = true;
 
-				switch(options[selected].toLowerCase()) {}
+				switch(options[selected].toLowerCase()) {
+					case "character editor":
+						LoadingState.switchStates(new asthe.states.editor.CharacterEdt());
+				}
 
 			}
 

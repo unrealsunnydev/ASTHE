@@ -4,6 +4,6 @@ auto_pause_desc	Freezes the game if the window loses focus.
 flashing_lights	Flashing Lights
 flashing_lights_desc	When disabled, lights won't flash anymore
 hide_hud	Hide Hud
-hide_hud_desc	Texts like <Q>Score<Q>, <Q>Time<Q> and etc. Will be hidden in-game.
+hide_hud_desc	Texts like <Q>Score<Q>, <Q>Time<Q><N>and etc. Will be hidden in-game.
 show_miliseconds	Show Miliseconds on Timer
-show_miliseconds_desc	If true, the timer will be formatted as 0'0<Q>00, instead of 0:00
+show_miliseconds_desc	If true, the timer will be<N>formatted as 0'0<Q>00, instead of 0:00

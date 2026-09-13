@@ -146,7 +146,7 @@ class ModsMenu extends StateManager {
 				}
 			else
 				authors.text = Locale.getString("mod_info_no_contributors", "mods_menu");
-			desc.text = m.description;
+			desc.text = (!StringUtil.isBlank(m.description)) ? m.description : Locale.getString("mod_info_no_description", "mods_menu");
 		}
 		else {
 			trace("Cannot update mod data because theres no mods in the list!".error());

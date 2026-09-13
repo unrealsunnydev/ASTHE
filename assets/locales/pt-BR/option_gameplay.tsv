@@ -6,4 +6,4 @@ flashing_lights_desc	Quando desativado, algumas luzes serão<N>menos intensas e 
 hide_hud	Esconder o HUD
 hide_hud_desc	Textos como <Q>Pontos<Q>, <Q>Tempo<Q> e etc.<N>Serão escondidos em-jogo.
 show_miliseconds	Contador de Tempo com MS
-show_miliseconds_desc	Se ativado, o contador de tempo<N>vai aparecer como 0'0<Q>00, ao invés de 0:00
+show_miliseconds_desc	Se ativado, o contador de tempo vai<N>aparecer como 0'0<Q>00, ao invés de 0:00

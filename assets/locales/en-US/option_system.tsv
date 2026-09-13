@@ -4,11 +4,11 @@ cache_on_gpu_desc	This causes the game to create caches on the GPU.<N>Turn this 
 discord_rich_presence	Discord Rich Presence
 discord_rich_presence_desc	Determines whether the game should display your statuses on your Discord profile.
 haptics	Haptics
-haptics_desc	Make your device vibrate depending of the content on the screen
+haptics_desc	Make your device vibrate<N>depending of the content on the screen
 accent_colors	Accent Colors
-accent_colors_desc	Some colors will be replaced with the accent color of your current system. Only supported on Windows by now.
+accent_colors_desc	Some colors will be replaced with<N>the accent color of your current system.
 low_quality	Low Quality
-low_quality_desc	Makes the game have a better performance for low-end platforms
+low_quality_desc	Makes the game have a<N>better performance for low-end platforms
 music_volume	Music Volume
 music_volume_desc	Adjusts the volume of the Music.
 sfx_volume	SoundFX Volume

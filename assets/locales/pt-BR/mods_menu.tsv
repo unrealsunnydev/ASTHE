@@ -1,4 +1,5 @@
 flag	content
 title	Menu de Mods
 no_mods_warn	Sem mods detectados<N><N>Por favor, instale um mod<N>antes de voltar à esse menu.
-mod_info_no_contributors	Sem Colaboradores
+mod_info_no_contributors	Sem colaboradores.
+mod_info_no_description	Sem descrição.

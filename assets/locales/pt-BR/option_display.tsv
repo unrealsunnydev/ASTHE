@@ -1,3 +1,7 @@
 flag	content
 background_layers	Camadas de Fundo
-background_layers_desc	Adiciona uma camada escura ao<N>fundo fazendo com que não fiquem tão brilhantes.
+background_layers_desc	Adiciona uma camada escura ao fundo<N>fazendo com que não fiquem tão brilhantes.
+show_fps	Mostrar QPS
+show_fps_desc	Mostra um contador de quadros por segundo no canto superior esquerdo da tela, também chamado de <LQ>FPS<RQ>
+framerate	Framerate
+framerate_desc	Define o framerate, note que definir um framerate baixo pode não ser bom para jogar o jogo.

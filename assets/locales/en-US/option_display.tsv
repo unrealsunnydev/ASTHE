@@ -1,6 +1,6 @@
 flag	content
 background_layers	Background Layers
-background_layers_desc	Adds a black layer for the backgrounds making it not much luminous
+background_layers_desc	Adds a black layer for the<N>backgrounds making it not much luminous
 show_fps	Show FPS
 show_fps_desc	Shows an FPS Counter on the top left corner of the screen
 framerate	Framerate

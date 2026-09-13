@@ -3,14 +3,10 @@ cache_on_gpu	Cache na GPU
 cache_on_gpu_desc	Isso faz o jogo criar caches na GPU (óbvio).<N>Desative se sua placa gráfica é ruim.
 discord_rich_presence	Presença Rica Discord
 discord_rich_presence_desc	Determina quando o jogo deve mostrar seu status em seu perfil do Discord
-show_fps	Mostrar QPS
-show_fps_desc	Mostra um contador de quadros por segundo no canto superior esquerdo da tela, também chamado de <LQ>FPS<RQ>
-framerate	Framerate
-framerate_desc	Define o framerate, note que definir um framerate baixo pode não ser bom para jogar o jogo.
 haptics	Vibrações
 haptics_desc	Faz seu dispositivo vibrar<N>dependendo do conteúdo em jogo.
 accent_colors	Cor de Destaque
-accent_colors_desc	Algumas cores serão substituídas pela cor de destaque do sistema atual. Por agora, é apenas suportado no Windows.
+accent_colors_desc	Algumas cores serão substituídas pela cor de destaque do sistema atual.
 low_quality	Baixa Qualidade
 low_quality_desc	Faz o jogo ter uma boa<N>performance para hardware dedicado.
 music_volume	Volume da Música

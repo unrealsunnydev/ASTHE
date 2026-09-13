@@ -79,7 +79,7 @@ class OptionsSubState extends SubStateManager {
 			}
 		}
 		else {
-			var warn:AstheText = AstheText.create(0, 0, Locale.getString("no_options", "options"));
+			var warn:AstheText = AstheText.create(0, 0, Locale.getString("no_options", "options", [InputFormatter.getControlNames(asthe.input.InputList.ACCEPT)]));
 			warn.screenCenter();
 			add(warn);
 		}
