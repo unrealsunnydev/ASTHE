@@ -217,22 +217,23 @@ class Project extends HXProject {
 
 			dist = dist.split("\n")[6].substr(3);
 
-			if (isDebug()) echo("Distribution is: '" + dist + "'");
 			switch (dist.toLowerCase()) {
-				case "ubuntu" | "mint" | "zorin":
-					var p = haxe.io.Path.join([Sys.getEnv("HOME"), ".local","share","icons","hicolor"]);
+				case "ubuntu" | "mint" | "zorin" | "debian":
+					var pLocal =  haxe.io.Path.join([Sys.getEnv("HOME"), ".local","share","icons","hicolor"]);
+					var scalPath = haxe.io.Path.join([pLocal, "scalable", "apps"]);
+					var symPath = haxe.io.Path.join([pLocal, "symbolic", "apps"]);
 
-					if (!sys.FileSystem.exists(p + "/scalable/apps"))
-						sys.FileSystem.createDirectory(sys.FileSystem.fullPath(p + "/scalable/apps"));
+					if (!sys.FileSystem.exists(scalPath))
+						sys.FileSystem.createDirectory(scalPath);
 
-					if (!sys.FileSystem.exists(p + "/symbolic/apps"))
-						sys.FileSystem.createDirectory(sys.FileSystem.fullPath(p + "/symbolic/apps"));
+					if (!sys.FileSystem.exists(symPath))
+						sys.FileSystem.createDirectory(symPath);
 
-					Sys.command("cp", ["./_project/icons/icon.svg", p + '/scalable/apps/$PACKAGE_NAME.svg']);
-					Sys.command("cp", ["./_project/icons/icon_monochrome.svg", p + '/symbolic/apps/$PACKAGE_NAME.svg']);
+					Sys.command("cp", ["./_project/icons/icon.svg", '$scalPath/$PACKAGE_NAME.svg']);
+					Sys.command("cp", ["./_project/icons/icon_monochrome.svg", '$symPath/$PACKAGE_NAME.svg']);
 
-					Sys.command("gtk-update-icon-cache", ["-f", "-t", p]);
-				case _: // Only tested on Linux Mint & Zorin OS.
+					Sys.command("gtk-update-icon-cache", ["-f", "-t", pLocal]);
+				case _: // Only tested on Linux Mint Cinnamon, Zorin OS and Debian Trixie (KDE Plasma).
 			}
 		}
 		else {
