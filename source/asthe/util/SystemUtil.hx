@@ -25,6 +25,13 @@ class SystemUtil {
 		`/` on Windows, `\` on other systems.
 	**/
 	inline public static final DIRECTORY_SEPARATOR_REPL:String = #if windows "/"; #else "\\"; #end
+
+	/**
+		Returns a Regex of invalid characters file names used on paths.
+
+		Windows: `\ / : * ? " < > |`  
+		Unix: `/`
+	**/
 	public static final INVALID_PATH_CHARS:EReg =
 	#if windows
 	new EReg("[\\/:*?\"<>|]", "g");
@@ -32,14 +39,16 @@ class SystemUtil {
 	new EReg("/", "g");
 	#end
 
-	inline public static function openFolder(folder:String, ?absolute:Null<Bool> = false) {
+	/**
+		Opens a folder on your system file manager
+	**/
+	inline public static function openFolder(folder:String, ?absolute:Null<Bool> = false):Void {
 		#if sys
 		if(!absolute) folder =  Sys.getCwd() + folder;
 
 		folder = Path.removeTrailingSlashes(folder.replace(DIRECTORY_SEPARATOR_REPL, DIRECTORY_SEPARATOR));
 
-
-		#if (windows || linux || mac)
+		#if (cpp)
 		var command:String = "";
 		#if mac
 		command = "/usr/bin/open";
@@ -58,6 +67,10 @@ class SystemUtil {
 		#end
 	}
 
+	/**
+		Opens a URL on a browser, or a new tab
+		if the browser are currently started.
+	**/
 	inline public static function browserLoad(site:String):Void {
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);
@@ -66,7 +79,21 @@ class SystemUtil {
 		#end
 	}
 
-	@:privateAccess() private static var _accent:FlxColor = 0xFFFFFF;
+	@:privateAccess() private static var _accent:Int = 0xFFFFFF;
+
+	/**
+		Loads the current accent color of the system
+
+		Accessible through `SystemUtil.ACCENT_COLOR`
+
+		EXAMPLE:
+		```haxe
+		var blankSpr:AstheSprite = new AstheSprite().createGraphic(10,10, 0xFFFFFFFF);
+		blankSpr.color = (ClientPrefs.data.options.accentColor) ? SystemUtil.ACCENT_COLOR : FlxColor.LIME;
+		```
+
+		Remember that you need to use a "default color" because this function is limited per system!
+	**/
 	inline public static function loadAccentColor():Null<Int> {
 		trace("Loading accent colors...".info());
 
@@ -91,28 +118,12 @@ class SystemUtil {
 		p.close();
 
 		// Conversion from ABRG to ARGB
-		var accent:String = "0x";
-
-		var r = result.split("    ")[3].trim(); // bro
-		accent += (r.substr(2,2)); // Alpha
-		accent += (r.substr(8,2)); // Red
-		accent += (r.substr(6,2)); // Green
-		accent += (r.substr(4,2)); // Blue
+		var accent:String = ColorUtil.convertToHex(result.split("    ")[3].trim(), false, true);
 
 		trace('Loaded!'#if debug + '\nParsed: . $accent\nOriginal: $r'#end.info());
 		return Std.parseInt(accent);
 		#elseif linux
 		final HOME:String = Sys.getEnv("HOME");
-
-		// Gets the current desktop environment you're using: KDE Plasma, GNOME, Cinnamon...
-		function getDesktop():Null<String> {
-			var x = Std.string(Sys.getEnv("XDG_CURRENT_DESKTOP")).toUpperCase();
-			if (x.contains("KDE") || x.contains("PLASMA")) return "KDE";
-			if (x.contains("GNOME")) return "GNOME";
-			if (x.contains("CINNAMON")) return "CINNAMON";
-			if (x.contains("XFCE")) return "XFCE";
-			return null;
-		}
 
 		// TODO: Add support to GNOME, XFCE and more.
 		switch (getDesktop()) {
@@ -127,6 +138,7 @@ class SystemUtil {
 				accent += StringTools.hex(Std.parseInt(rawAccent[1]), 2);
 				accent += StringTools.hex(Std.parseInt(rawAccent[2]), 2);
 
+				trace('Loaded!'#if debug + '\nParsed: . $accent\nOriginal: $rawAccent'#end.info());
 				return Std.parseInt(accent);
 			/*
 			case "GNOME":
@@ -144,21 +156,38 @@ class SystemUtil {
 		#end
 	}
 
-	private static function get_ACCENT_COLOR():FlxColor {
+	private static function get_ACCENT_COLOR():Int {
 		return _accent;
 	}
 
-	private static function set_ACCENT_COLOR(value:Null<FlxColor>):FlxColor {
-		_accent = value ?? FlxColor.WHITE;
-
+	private static function set_ACCENT_COLOR(value:Null<Int>):Int {
 		if (value == null) {
-			trace("Value for accent color is null! Setting to WHITE".warn());
+			trace("Value for accent color is null!".warn());
 		}
 
+		_accent = value ?? 0xFFFFFF;
 		return _accent;
 	}
 
 	public static function getSystemName():String {
 		return LimeSystem.platformName;
+	}
+
+	/**
+		Gets the current desktop environment you're using on Linux: KDE Plasma, GNOME, Cinnamon...
+
+		DOES NOT WORK WITH WINDOWS AND MACOS
+	**/
+	public static function getDesktop():Null<String> {
+		#if linux
+		var x = Std.string(Sys.getEnv("XDG_CURRENT_DESKTOP")).toUpperCase();
+		if (x.contains("KDE") || x.contains("PLASMA")) return "KDE";
+		if (x.contains("GNOME")) return "GNOME";
+		if (x.contains("CINNAMON")) return "CINNAMON";
+		if (x.contains("XFCE")) return "XFCE";
+		return null;
+		#else
+		return null;
+		#end
 	}
 }
