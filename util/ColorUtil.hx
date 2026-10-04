@@ -2,7 +2,6 @@ package util;
 
 class ColorUtil {
 	static final cssColors = [
-		"maroom" => "800000",
 		"black" => "FF000000",
 		"silver" => "FFC0C0C0",
 		"gray" => "FF808080",
