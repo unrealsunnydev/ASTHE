@@ -254,7 +254,7 @@ class HudGame extends FlxSpriteGroup {
 	}
 
 	private function set_rings(v:Int):Int {
-		v = MathUtil.clampInt(v, 0, Constants.HUD_RINGS_MAX);
+		v = MathUtil.clamp(v, 0, Constants.HUD_RINGS_MAX);
 		ringsValTxt.text = Std.string(v);
 		rings = v;
 
@@ -262,7 +262,7 @@ class HudGame extends FlxSpriteGroup {
 	}
 
 	private function set_lives(v:Int):Int {
-		v = MathUtil.clampInt(v, 0, Constants.HUD_LIVES_MAX);
+		v = MathUtil.clamp(v, 0, Constants.HUD_LIVES_MAX);
 		livesTxt.text = Std.string(v);
 		lives = v;
 

@@ -26,7 +26,7 @@ class StringOption extends Option<String> {
 
 		if (index == -1) index = 0;
 
-		index = MathUtil.clampInt(index + Std.int(s), 0, list.length - 1);
+		index = MathUtil.clamp(index + Std.int(s), 0, list.length - 1);
 		value = list[index];
 	}
 }
