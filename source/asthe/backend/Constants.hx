@@ -17,9 +17,19 @@ class Constants {
 	@:keep public static final GIT_COMMIT_HASH:String = GitTools.getCommitHash();
 
 	/**
+		Returns the GitHub's repository owner
+	**/
+	inline public static final GIT_REPO_COMPANY:String = "unrealsunnydev";
+
+	/**
+		Returns the GitHub's repository name
+	**/
+	inline public static final GIT_REPO_PROJECT:String = "ASTHE";
+
+	/**
 		Returns the repository URL of the project
 	**/
-	public static final GIT_REPO_URL:String = "https://github.com/unrealsunnydev/ASTHE";
+	inline public static final GIT_REPO_URL:String = 'https://github.com/$GIT_REPO_COMPANY/$GIT_REPO_PROJECT';
 
 	// Fonts
 	inline public static final ABSOLUTE_FONT_GLYPHDATA:String =

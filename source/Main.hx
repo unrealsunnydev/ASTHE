@@ -86,10 +86,10 @@ class Main extends Sprite {
 
 		var msg:String = "Error!\n";
 
-		msg += e.error + "\n\nReport this in Github: https://github.com/unrealsunnydev/ASTHE/issues";
+		msg += e.error + "\n\nReport this in Github: " + Constants.GIT_REPO_URL + "/issues";
 
 		#if sys
-		FileUtil.saveContent(folderPath + 'ASTHE_${date}.log', msg);
+		FileUtil.saveContent(folderPath + Constants.GIT_REPO_PROJECT + "_" + date + ".log", msg);
 
 		Sys.println(msg);
 		#end
