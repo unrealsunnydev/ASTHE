@@ -38,6 +38,9 @@ class Character extends AstheSprite {
 	public final lifeIcon:String = Constants.LIFE_ICON;
 
 	// Statistics
+	/**
+		Gets the character current state
+	**/
 	public var state:StateList;
 	public var isSuper:Bool = false;
 	public var JUMP_SPEED:Int      = -450;
@@ -137,6 +140,11 @@ class Character extends AstheSprite {
 		log('Added animation to the list. ($name)');
 	}
 
+	/**
+		Checks if an animation exists.
+		@param name Name of the animation
+		@return Bool
+	**/
 	public function animExists(name:String):Bool {
 		if (Reflect.hasField(exAnim, name) || !name.isBlank()) {
 			var nameN:String = Std.string(Reflect.field(exAnim, name) ?? name);
@@ -156,6 +164,9 @@ class Character extends AstheSprite {
 		AstheSound.playSound("Hurt");
 	}
 
+	/**
+		Updates the movement for Playable characters
+	**/
 	public function updateMoves() {
 		if (controls.LEFT_P || controls.RIGHT_P) {
 			acceleration.x = (controls.LEFT_P) ? -ACCELERATION : ACCELERATION;
@@ -172,6 +183,10 @@ class Character extends AstheSprite {
 		}
 	}
 
+	/**
+		Updates the animations for this character
+		@param e Elapsed FlxState time
+	**/
 	function updateAnimations(e:Float):Void {
 
 		if (controls.DOWN_P && state != ROLLING) {
@@ -199,6 +214,9 @@ class Character extends AstheSprite {
 		}
 	}
 
+	/**
+		Makes the character to jump!
+	**/
 	public function jump():Void {
 		if (isTouching(FlxDirectionFlags.FLOOR)) {
 			state = JUMPING;
@@ -207,6 +225,9 @@ class Character extends AstheSprite {
 		}
 	}
 
+	/**
+		Makes the character to roll
+	**/
 	public function roll():Void {
 		AstheSound.playSound(ConstantSound.PLAYER_ROLL);
 		state = ROLLING;
@@ -306,12 +327,43 @@ class Character extends AstheSprite {
 	}
 }
 
+/**
+	Current character state list
+**/
 enum StateList {
+
+	/**
+		The character has stopped / In idle state
+	**/
 	IDLE;
+
+	/**
+		The character is walking
+	**/
 	WALKING;
+
+	/**
+		The character is running
+	**/
 	RUNNING;
+
+	/**
+		The character is jumping
+	**/
 	JUMPING;
+
+	/**
+		The character is rolling
+	**/
 	ROLLING;
+
+	/**
+		The character is transforming
+	**/
 	TRANSFORM;
+
+	/**
+		The character achieve the dying state
+	**/
 	DYING;
 }

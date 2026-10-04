@@ -220,7 +220,11 @@ class Paths {
 		return graph;
 	}
 
-
+	/**
+		Gets the path for font files
+		@param key The font filename
+		@return getPath():String
+	**/
 	inline static public function font(key:String) {
 		#if TRANSLATIONS_ALLOWED
 		key = Locale.tongue.getFontData(key).name;
@@ -280,6 +284,11 @@ class Paths {
 		return false;
 	}
 
+	/**
+		Gets the content of a file
+		@param key File name or path to the file
+		@return Null<String>
+	**/
 	inline static public function getContent(key:String):Null<String> {
 		if (fileExists(key, TEXT))
 			return Assets.getText(getPath(key));
@@ -290,7 +299,7 @@ class Paths {
 	}
 
 	/**
-		Parses an JSON data
+		Parses an JSON file
 		@param path Path to json name (e.g. 'data/MyData.json')
 		@return Dynamic
 	**/

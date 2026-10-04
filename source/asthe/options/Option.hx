@@ -53,6 +53,11 @@ class Option<T> {
 		@param step Change amount
 	**/
 	public function onChange(step:Float):Void {}
+
+	/**
+		The formatted value to return
+		@return String
+	**/
 	public function formatValue():String {
 		return Std.string(value);
 	}

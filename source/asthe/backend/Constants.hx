@@ -11,8 +11,14 @@ import asthe.backend.macro.GitTools;
 class Constants {
 
 	// Git
-	@:keep
-	public static final GIT_COMMIT_HASH:String = GitTools.getCommitHash();
+	/**
+		Gets the current Git commit hash
+	**/
+	@:keep public static final GIT_COMMIT_HASH:String = GitTools.getCommitHash();
+
+	/**
+		Returns the repository URL of the project
+	**/
 	public static final GIT_REPO_URL:String = "https://github.com/unrealsunnydev/ASTHE";
 
 	// Fonts

@@ -55,12 +55,22 @@ class Locale {
 		return str;
 	}
 
+	/**
+		Formats the localization key string 
+		@param key The key to format
+	**/
 	inline static private function formatKey(key:Null<String>) {
 		final hideChars = ~/[~&\\\/;:<>#.,'"%?!]/g;
 		key ??= "";
 		return hideChars.replace(key.replace(' ', '_'), '').trim().toLowerCase();
 	}
 
+	/**
+		Initializes the localization system.
+
+		If you want to change the Firetongue's configuration,
+		checkout this function!
+	**/
 	public static function init() {
 		tongue ??= new FireTongue(OPENFL, Case.Unchanged);
 

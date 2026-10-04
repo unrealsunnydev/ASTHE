@@ -9,6 +9,9 @@ package asthe.framework;
 import flixel.text.FlxText;
 import flixel.text.FlxText.FlxTextBorderStyle;
 
+/**
+	Wrapper for FlxText, but with better functions
+**/
 class AstheText extends FlxText {
 	public function new(x:Float = 0.0, y:Float = 0.0, width:Float = 0.0, ?text:String, size:Int = 16, embedded:Bool = true) {
 		super(x, y, width, text, size, embedded);
@@ -46,6 +49,13 @@ class AstheText extends FlxText {
 		return this;
 	}
 
+	/**
+		Formats the text applying a border into it
+		@param style Type of border (from AstheText.TextBorder)
+		@param borderColor Color of the border
+		@param borderSize Size of the border
+		@return AstheText
+	**/
 	public function formatBorder(style:TextBorder = OUTLINE, borderColor:FlxColor = FlxColor.BLACK, ?borderSize:Int = 1):AstheText {
 		switch (style) {
 			case NONE: // Nothing
@@ -67,11 +77,35 @@ class AstheText extends FlxText {
 	}
 }
 
+/**
+	Type of text border to apply
+**/
 enum TextBorder {
+	/**
+		Doesn't apply a border.
+	**/
 	NONE;
+
+	/**
+		Apply a shadow border
+	**/
 	SHADOW;
+
+	/**
+		Apply a shadow border with custom offsets
+
+		Compatible with  either 5.9.0+ or lower
+	**/
 	SHADOW_XY(offX:Int, offY:Int); // Compatibility with Flixel 5.9.0+
+
+	/**
+		Apply a outline border
+	**/
 	OUTLINE;
+
+	/**
+		Apply a outline border
+	**/
 	OUTLINE_FAST;
 }
 

@@ -236,8 +236,23 @@ class SaveEntry extends FlxSpriteGroup {
 	}
 }
 
+/**
+	The current state of the save slot
+**/
 enum SaveState {
+	/**
+		The save slot is in blank state or does not
+		have a save file
+	**/
 	New;
+
+	/**
+		The save slot has a save file and is not blank;
+	**/
 	InProgress;
+
+	/**
+		The save slot is clear (the player finished the game on this slot)
+	**/
 	Clear;
 }

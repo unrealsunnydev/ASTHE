@@ -38,12 +38,21 @@ class LifeIcon extends AstheSprite {
 	}
 
 	// Leaving it public for scripts to override it
+	/**
+		Loads the animations for the Life Icon
+
+		Remember to call `animation.play`!
+	**/
 	public function loadAnimations():Void {
 		animation.add("normal", [0], 0, false, false);
 		animation.add("super",  [1], 0, false, false);
 		animation.play("normal");
 	}
 
+	/**
+		Set the LifeIcon animations to Super state (Frame 1)
+		@param isSuper Condition (True or False)
+	**/
 	public function setSuper(isSuper:Bool):Void {
 		animation.play(isSuper ? "super" : "normal");
 		updatePalette([]);

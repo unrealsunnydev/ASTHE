@@ -3,7 +3,6 @@
 	You are allowed to use, modify and redistribute this code
 	Credit is not needed, but are appreciated.
 */
-
 package asthe.options;
 
 import flixel.addons.display.FlxSliceSprite;
