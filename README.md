@@ -30,7 +30,7 @@ Last edit: 2026/10/18*
 <summary><h2>Compiling resources</h2></summary>
 
 You need to clone the repository, and you must need Git installer before starting\
-[Read this guide on the wiki for more details!]()
+[Read this guide on the wiki for more details!][docs_compiling]
 
 To clone the repo, run this on a terminal:\
 `git clone https://github.com/unrealsunnydev/ASTHE.git`
