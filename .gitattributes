@@ -1,0 +1,10 @@
+* text=auto
+
+# Lime Project file
+project.hxp text diff=haxe
+
+# Polymod files
+*.hxs text diff=haxe
+*.hxc text diff=haxe
+
+**/locales/*.tsv text working-tree-encoding=UTF-8
