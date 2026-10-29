@@ -1,11 +1,11 @@
 * text=auto
 
 # Lime Project file
-*.hxp text diff=haxe linguistic-language=haxe
+*.hxp text diff=haxe linguist-language=haxe
 
 # Polymod files
-*.hxs text diff=haxe linguistic-language=haxe
-*.hxc text diff=haxe linguistic-language=haxe
+*.hxs text diff=haxe linguist-language=haxe
+*.hxc text diff=haxe linguist-language=haxe
 
 **/locales/**/*.tsv text working-tree-encoding=UTF-8
 **/locales/**/*.tsv text working-tree-encoding=UTF-8
